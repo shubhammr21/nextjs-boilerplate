@@ -4,6 +4,9 @@
     "next/typescript",
     "prettier"
   ],
+  "plugins": [
+    "check-file"
+  ],
   "rules": {
     "prefer-arrow-callback": [
       "error"
@@ -14,6 +17,21 @@
     "quotes": [
       "error",
       "double"
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/*.{ts,tsx}": "KEBAB_CASE"
+      },
+      {
+        "ignoreMiddleExtensions": true
+      }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/**": "KEBAB_CASE"
+      }
     ]
   }
 }
