@@ -14,6 +14,7 @@ import {
 } from "@nextui-org/react"
 
 import { AppLogo } from "./app-logo"
+import { ThemeSwitcher } from "./theme-switcher"
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -74,6 +75,7 @@ export default function AppNavbar() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+      <ThemeSwitcher />
     </Navbar>
   )
 }
