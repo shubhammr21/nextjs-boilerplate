@@ -14,6 +14,7 @@ import {
 } from "@nextui-org/react"
 
 import { AppLogo } from "./app-logo"
+import AuthButton from "./auth-button"
 import { ThemeSwitcher } from "./theme-switcher"
 
 export default function AppNavbar() {
@@ -75,6 +76,7 @@ export default function AppNavbar() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+      <AuthButton />
       <ThemeSwitcher />
     </Navbar>
   )
