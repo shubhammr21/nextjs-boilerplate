@@ -51,6 +51,12 @@ export default function AppNavbar() {
             </Link>
           </NavbarItem>
         ))}
+        <NavbarItem>
+          <AuthButton minimal={false} />
+        </NavbarItem>
+        <NavbarItem>
+          <ThemeSwitcher />
+        </NavbarItem>
       </NavbarContent>
       {/* <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
@@ -75,9 +81,13 @@ export default function AppNavbar() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <AuthButton />
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <ThemeSwitcher />
+        </NavbarMenuItem>
       </NavbarMenu>
-      <AuthButton />
-      <ThemeSwitcher />
     </Navbar>
   )
 }

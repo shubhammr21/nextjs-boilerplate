@@ -1,22 +1,76 @@
 "use client"
 
-import { Button, CircularProgress } from "@nextui-org/react"
+import {
+  Avatar,
+  Button,
+  CircularProgress,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger
+} from "@nextui-org/react"
+import { IconBrandGoogle } from "@tabler/icons-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
-const AuthButton = () => {
-  const { status } = useSession()
+const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
+  const { data, status } = useSession()
   if (status === "loading") {
-    return <CircularProgress />
+    return <CircularProgress aria-label="Loading..." />
   }
   if (status === "authenticated") {
+    if (minimal) {
+      return (
+        <Button
+          onClick={() => signOut()}
+          color="danger"
+          variant="ghost"
+          startContent={<IconBrandGoogle />}
+        >
+          Sign out
+        </Button>
+      )
+    }
     return (
-      <Button onClick={() => signOut()} color="danger" variant="ghost">
-        Sign out
-      </Button>
+      <Dropdown placement="bottom-end">
+        <DropdownTrigger>
+          <Avatar
+            isBordered
+            as="button"
+            className="transition-transform"
+            showFallback={!data.user?.image}
+            src={data.user?.image || ""}
+          />
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Profile Actions" variant="flat">
+          <DropdownItem
+            key="profile"
+            className="h-14 gap-2"
+            textValue="profile"
+          >
+            <p className="font-semibold">Signed in as</p>
+            <p className="font-semibold">{data.user?.email}</p>
+          </DropdownItem>
+          <DropdownItem key="logout" color="danger" textValue="Sign Out">
+            <Button
+              onClick={() => signOut()}
+              color="danger"
+              variant="ghost"
+              startContent={<IconBrandGoogle />}
+            >
+              Sign out
+            </Button>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     )
   }
   return (
-    <Button onClick={() => signIn("google")} color="danger" variant="ghost">
+    <Button
+      onClick={() => signIn("google")}
+      color="danger"
+      variant="ghost"
+      startContent={<IconBrandGoogle />}
+    >
       Sign in
     </Button>
   )

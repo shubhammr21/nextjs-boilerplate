@@ -1,0 +1,9 @@
+https://tabler.io/icons
+https://github.com/trivago/prettier-plugin-sort-imports
+https://nextjs.org/docs/messages/react-hydration-error
+https://nx.dev/getting-started/intro#try-nx-yourself
+https://github.com/alan2207/bulletproof-react/tree/master
+https://nextui.org/
+https://create.t3.gg/
+https://env.t3.gg/docs/introduction
+https://www.npmjs.com/package/eslint-plugin-n
