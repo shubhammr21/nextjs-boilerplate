@@ -12,6 +12,7 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle
 } from "@nextui-org/react"
+import { useSession } from "next-auth/react"
 
 import { AppLogo } from "./app-logo"
 import AuthButton from "./auth-button"
@@ -19,11 +20,12 @@ import { ThemeSwitcher } from "./theme-switcher"
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const { status } = useSession()
 
-  const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Profile", path: "/profile" }
-  ]
+  const menuItems = [{ label: "Home", path: "/" }]
+  if (status === "authenticated") {
+    menuItems.push({ label: "Profile", path: "/profile" })
+  }
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -51,10 +53,10 @@ export default function AppNavbar() {
             </Link>
           </NavbarItem>
         ))}
-        <NavbarItem>
+        <NavbarItem key="AuthButton">
           <AuthButton minimal={false} />
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem key="ThemeSwitcher">
           <ThemeSwitcher />
         </NavbarItem>
       </NavbarContent>
@@ -81,10 +83,10 @@ export default function AppNavbar() {
             </Link>
           </NavbarMenuItem>
         ))}
-        <NavbarMenuItem>
+        <NavbarMenuItem key="AuthButton">
           <AuthButton />
         </NavbarMenuItem>
-        <NavbarMenuItem>
+        <NavbarMenuItem key="ThemeSwitcher">
           <ThemeSwitcher />
         </NavbarMenuItem>
       </NavbarMenu>
