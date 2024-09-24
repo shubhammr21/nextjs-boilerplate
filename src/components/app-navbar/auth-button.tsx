@@ -9,7 +9,7 @@ import {
   DropdownMenu,
   DropdownTrigger
 } from "@nextui-org/react"
-import { IconBrandGoogle } from "@tabler/icons-react"
+import { IconBrandGoogle, IconLogout } from "@tabler/icons-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
@@ -24,7 +24,7 @@ const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
           onClick={() => signOut()}
           color="danger"
           variant="ghost"
-          startContent={<IconBrandGoogle />}
+          endContent={<IconLogout />}
         >
           Sign out
         </Button>
@@ -50,15 +50,16 @@ const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">{data.user?.email}</p>
           </DropdownItem>
-          <DropdownItem key="logout" color="danger" textValue="Sign Out">
-            <Button
-              onClick={() => signOut()}
-              color="danger"
-              variant="ghost"
-              startContent={<IconBrandGoogle />}
-            >
-              Sign out
-            </Button>
+          <DropdownItem
+            key="logout"
+            color="danger"
+            textValue="Sign Out"
+            onClick={() => signOut()}
+          >
+            <div className="flex justify-between">
+              <p>Sign Out</p>
+              <IconLogout className="justify-end" />
+            </div>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
