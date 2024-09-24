@@ -13,6 +13,17 @@ import { IconBrandGoogle, IconLogout } from "@tabler/icons-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
+  const handleSignIn = () => {
+    signIn("google", {
+      callbackUrl: "/profile"
+    })
+  }
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: "/"
+    })
+  }
+
   const { data, status } = useSession()
   if (status === "loading") {
     return <CircularProgress aria-label="Loading..." />
@@ -21,7 +32,7 @@ const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
     if (minimal) {
       return (
         <Button
-          onClick={() => signOut()}
+          onClick={handleSignOut}
           color="danger"
           variant="ghost"
           endContent={<IconLogout />}
@@ -54,7 +65,7 @@ const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
             key="logout"
             color="danger"
             textValue="Sign Out"
-            onClick={() => signOut()}
+            onClick={handleSignOut}
           >
             <div className="flex justify-between">
               <p>Sign Out</p>
@@ -67,7 +78,7 @@ const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
   }
   return (
     <Button
-      onClick={() => signIn("google")}
+      onClick={handleSignIn}
       color="danger"
       variant="ghost"
       startContent={<IconBrandGoogle />}
