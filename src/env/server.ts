@@ -7,7 +7,10 @@ export const env = createEnv({
     NEXTAUTH_URL: z.string().url(),
     NEXTAUTH_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
-    GOOGLE_CLIENT_SECRET: z.string()
+    GOOGLE_CLIENT_SECRET: z.string(),
+    AZURE_AD_CLIENT_ID: z.string(),
+    AZURE_AD_CLIENT_SECRET: z.string(),
+    AZURE_AD_TENANT_ID: z.string()
   },
   onValidationError: (error: ZodError) => {
     console.error(

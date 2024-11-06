@@ -9,11 +9,20 @@ import {
   DropdownMenu,
   DropdownTrigger
 } from "@nextui-org/react"
-import { IconBrandGoogle, IconLogout } from "@tabler/icons-react"
+import {
+  IconBrandAzure,
+  IconBrandGoogle,
+  IconLogout
+} from "@tabler/icons-react"
 import { signIn, signOut, useSession } from "next-auth/react"
 
 const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
-  const handleSignIn = () => {
+  const handleAzureADSignIn = () => {
+    signIn("azure-ad", {
+      callbackUrl: "/profile"
+    })
+  }
+  const handleGoogleSignIn = () => {
     signIn("google", {
       callbackUrl: "/profile"
     })
@@ -77,14 +86,24 @@ const AuthButton = ({ minimal = true }: { minimal?: boolean }) => {
     )
   }
   return (
-    <Button
-      onClick={handleSignIn}
-      color="danger"
-      variant="ghost"
-      startContent={<IconBrandGoogle />}
-    >
-      Sign in
-    </Button>
+    <>
+      <Button
+        onClick={handleGoogleSignIn}
+        color="danger"
+        variant="ghost"
+        startContent={<IconBrandGoogle />}
+      >
+        Sign in
+      </Button>
+      <Button
+        onClick={handleAzureADSignIn}
+        color="danger"
+        variant="ghost"
+        startContent={<IconBrandAzure />}
+      >
+        Sign in
+      </Button>
+    </>
   )
 }
 
