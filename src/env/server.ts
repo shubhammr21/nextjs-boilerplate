@@ -10,7 +10,13 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string(),
     AZURE_AD_CLIENT_ID: z.string(),
     AZURE_AD_CLIENT_SECRET: z.string(),
-    AZURE_AD_TENANT_ID: z.string()
+    AZURE_AD_TENANT_ID: z.string(),
+    DB_HOST: z.string(),
+    DB_PORT: z.coerce.number(),
+    DB_USER: z.string(),
+    DB_PASSWORD: z.string(),
+    DB_NAME: z.string(),
+    DATABASE_URL: z.string().url()
   },
   onValidationError: (error: ZodError) => {
     console.error(
