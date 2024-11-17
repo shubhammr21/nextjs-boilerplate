@@ -10,6 +10,7 @@
     "format": "prettier src/ --write"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.7.4",
     "@nextui-org/react": "^2.4.8",
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tabler/icons-react": "^3.17.0",
