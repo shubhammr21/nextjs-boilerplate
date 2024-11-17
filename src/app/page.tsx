@@ -1,6 +1,6 @@
 import { Card, CardBody } from "@nextui-org/react"
 
-export default function Home() {
+const Home = async () => {
   return (
     <Card className="mx-auto mt-4 max-w-md">
       <CardBody className="text-center">
@@ -10,3 +10,5 @@ export default function Home() {
     </Card>
   )
 }
+
+export default Home
