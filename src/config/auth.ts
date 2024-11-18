@@ -7,6 +7,18 @@ import db from "@/db"
 import { env } from "@/env/server"
 
 const options: NextAuthOptions = {
+  // If using a database adapter, the default behavior sets the session strategy to "database".
+  // Switching the strategy to "jwt" bypasses the use of the session table.
+  // To keep session data in the database while using "jwt", you can implement custom checks manually.
+  // Refer to the following resources for guidance:
+  // - https://authjs.dev/getting-started/session-management/get-session
+  // - https://authjs.dev/getting-started/session-management/protecting
+  //
+  // Currently, this boilerplate uses the "jwt" strategy, which is sufficient for now.
+  // However, this section should be configured according to the specific requirements of your project.
+  session: {
+    strategy: "jwt"
+  },
   pages: {
     signIn: "/"
   },
